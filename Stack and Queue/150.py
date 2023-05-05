@@ -1,13 +1,26 @@
 from operator import add, sub, mul
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        hash_map = {'+':add, '-':sub, '*':mul, '/':lambda x,y : int(x/y)}
+        '''
+        Evaluates the given Reverse Polish Notation expression and returns the result.
+
+        :param tokens: A list of strings representing the Reverse Polish Notation expression.
+        :return: An integer representing the result of the evaluation.
+        '''
+        # Define a dictionary to map operators to their corresponding functions
+        operators = {'+':add, '-':sub, '*':mul, '/':lambda x,y : int(x/y)}
+
+        # Create an empty stack to hold the operands
         stack = []
-        for i in tokens:
-            if i not in hash_map.keys():
-                stack.append(int(i))
+        for token in tokens:
+            # If the token is an operand, pushes it onto the stack
+            if token not in operators:
+                stack.append(int(token))
+
+            # If the token is an operator, pops two operands from the stack, applies the operator and pushes the result onto the stack
             else:
-                a = stack.pop()
-                b = stack.pop()
-                stack.append(hash_map[i](b,a))
+                operand2 = stack.pop()
+                operand1 = stack.pop()
+                stack.append(operators[token](operand1,operand2))
+
         return stack.pop()
