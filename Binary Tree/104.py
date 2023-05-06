@@ -22,13 +22,14 @@ class Solution:
 
             # Update the maximum depth if needed
             nonlocal max_depth
-            max_depth = max(max_depth, current_depth)
 
             # Recuse on left and right children
             if not node.left and not node.right:
-                return
+                max_depth = max(max_depth, current_depth)
+
             if node.left:
                 getDepth(node.left, current_depth + 1)
+
             if node.right:
                 getDepth(node.right, current_depth + 1)
 
@@ -94,6 +95,7 @@ class Solution:
                 # Add the left and right children of the current node to the queue
                 if node.left:
                     queue.append(node.left)
+
                 if node.right:
                     queue.append(node.right)
 
