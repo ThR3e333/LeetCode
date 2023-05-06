@@ -53,12 +53,6 @@ class Solution:
         :return: The maximum depth of the tree.
         '''
         def get_depth(current_node):
-            '''
-            Recursively calculate the depth of the given node.
-            :param root:
-            :return:
-            '''
-
             # Base case: empty node
             if not current_node:
                 return 0
@@ -80,10 +74,10 @@ class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         '''
         Returns the maximum depth of a binary tree.
+
         :param root: The root of the tree.
         :return: The maximum depth of the tree.
         '''
-
         # Base case: empty tree
         if not root:
             return 0
