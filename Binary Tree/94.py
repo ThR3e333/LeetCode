@@ -38,24 +38,30 @@ class Solution:
 
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        '''
+        Returns the inorder traversal of a binary tree.
+
+        :param root: The root node of the binary tree.
+        :return: A list of integers representing the inorder traversal of the binary tree.
+        '''
         if not root:
             return []
 
         stack, result = [], []
 
         # Traverse the tree using iterative inorder traversal
-        cur = root
-        while stack or cur:
+        current_node = root
+        while stack or current_node:
             # If the current node is not None, push it onto the stack and move to its left child
-            if cur:
-                stack.append(cur)
-                cur = cur.left
+            if current_node:
+                stack.append(current_node)
+                current_node = current_node.left
 
             # If the current node is None, pop the last node from the stack,
             # append its value to the result list, and move to its right child
             else:
-                cur = stack.pop()
-                result.append(cur.val)
-                cur = cur.right
+                current_node = stack.pop()
+                result.append(current_node.val)
+                current_node = current_node.right
 
         return result

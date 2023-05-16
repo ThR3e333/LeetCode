@@ -11,18 +11,31 @@ class Node:
 from collections import deque
 class Solution:
     def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        '''
+        Connect each node of a binary tree to its next right node in the same level.
+
+        :param root: The root node of the binary tree.
+        :return: The modified binary tree.
+        '''
         if not root:
             return None
+
         que = deque([root])
+
         while que:
             size = len(que)
+
             for i in range(size):
                 node = que.popleft()
+
                 if node.left:
                     que.append(node.left)
+
                 if node.right:
                     que.append(node.right)
-                if i == size - 1:
-                    break
-                node.next = que[0]
+
+                # Connect the current node to its next right node in the same level
+                if i < size - 1:
+                    node.next = que[0]
+
         return root
